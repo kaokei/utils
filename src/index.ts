@@ -17,7 +17,7 @@ type KeyValueMap<T extends readonly Option[]> = {
   [P in T[number]['key']]: Extract<T[number], { key: P }>['value']
 }
 
-type CustomKeyMap<T extends readonly Option[], K extends keyof Option> = {
+type CustomKeyMap<T extends readonly Option[], K extends keyof T[number]> = {
   [P in T[number]['key']]: Extract<T[number], { key: P }>[K]
 }
 
@@ -29,7 +29,7 @@ type ValueKeyMap<T extends readonly Option[]> = {
   [P in T[number]['value']]: Extract<T[number], { key: P }>['key']
 }
 
-type CustomValueMap<T extends readonly Option[], K extends keyof Option> = {
+type CustomValueMap<T extends readonly Option[], K extends keyof T[number]> = {
   [P in T[number]['value']]: Extract<T[number], { value: P }>[K]
 }
 
@@ -123,19 +123,19 @@ export function getValueMap<T extends readonly Option[]>(options: T) {
  * 自定义 key-指定属性映射
  */
 
-export function getMapByKey<T extends readonly Option[], K extends keyof Option>(options: T, valueKey: K) {
+export function getMapByKey<T extends Option, K extends keyof T>(options: readonly T[], valueKey: K) {
   return options.reduce((map, option) => ({
     ...map,
     [option.key]: option[valueKey],
-  }), {} as CustomKeyMap<T, K>)
+  }), {} as CustomKeyMap<T[], K>)
 }
 
 /**
  * 自定义 value-指定属性映射
  */
-export function getMapByValue<T extends readonly Option[], K extends keyof Option>(options: T, valueKey: K) {
+export function getMapByValue<T extends Option, K extends keyof T>(options: readonly T[], valueKey: K) {
   return options.reduce((map, option) => ({
     ...map,
     [option.value]: option[valueKey],
-  }), {} as CustomValueMap<T, K>)
+  }), {} as CustomValueMap<T[], K>)
 }
