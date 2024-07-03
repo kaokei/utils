@@ -26,7 +26,7 @@ type KeyLabelMap<T extends readonly Option[]> = {
 }
 
 type ValueKeyMap<T extends readonly Option[]> = {
-  [P in T[number]['value']]: Extract<T[number], { key: P }>['key']
+  [P in T[number]['value']]: Extract<T[number], { value: P }>['key']
 }
 
 type CustomValueMap<T extends readonly Option[], K extends keyof T[number]> = {
@@ -34,7 +34,7 @@ type CustomValueMap<T extends readonly Option[], K extends keyof T[number]> = {
 }
 
 type ValueLabelMap<T extends readonly Option[]> = {
-  [P in T[number]['value']]: Extract<T[number], { key: P }>['label']
+  [P in T[number]['value']]: Extract<T[number], { value: P }>['label']
 }
 
 type KeyMap<T extends readonly Option[]> = {
@@ -42,7 +42,7 @@ type KeyMap<T extends readonly Option[]> = {
 }
 
 type ValueMap<T extends readonly Option[]> = {
-  [P in T[number]['value']]: Extract<T[number], { key: P }>
+  [P in T[number]['value']]: Extract<T[number], { value: P }>
 }
 
 /**

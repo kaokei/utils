@@ -92,18 +92,18 @@ describe('typeScript type tests', () => {
   })
 
   it('getMapByKey', () => {
-    const keyMap = getMapByKey(EXAMPLE_OPTIONS, 'tag')
+    const keyTagMap = getMapByKey(EXAMPLE_OPTIONS, 'tag')
 
-    expect(keyMap.BOY).toBe('高达')
-    expect(keyMap.GIRL).toBe('小仙女')
-    expect(keyMap).toEqual({ BOY: '高达', GIRL: '小仙女' })
+    expect(keyTagMap.BOY).toBe('高达')
+    expect(keyTagMap.GIRL).toBe('小仙女')
+    expect(keyTagMap).toEqual({ BOY: '高达', GIRL: '小仙女' })
   })
 
   it('getMapByValue', () => {
-    const valueMap = getMapByValue(EXAMPLE_OPTIONS, 'color')
+    const valueColorMap = getMapByValue(EXAMPLE_OPTIONS, 'color')
 
-    expect(valueMap[1]).toBe('red')
-    expect(valueMap[2]).toBe('green')
-    expect(valueMap).toEqual({ 1: 'red', 2: 'green' })
+    expect(valueColorMap[1]).toBe('red')
+    expect(valueColorMap[2]).toBe('green')
+    expect(valueColorMap).toEqual({ 1: 'red', 2: 'green' })
   })
 })
