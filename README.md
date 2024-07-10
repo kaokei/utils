@@ -14,15 +14,15 @@
 ```ts
 export const EXAMPLE_OPTIONS = [
   {
-    key: 'BOY', // 必需且唯一
-    value: 1, // 必需且唯一性
+    key: 'BOY', // 唯一
+    value: 1, // 必需且唯一
     label: '男生', // 必需
     tag: '高达', // 可选
     color: 'red', // 可选
   },
   {
-    key: 'GIRL', // 必需且唯一性
-    value: 2, // 必需且唯一性
+    key: 'GIRL', // 唯一
+    value: 2, // 必需且唯一
     label: '女生', // 必需
     tag: '小仙女', // 可选
     color: 'green', // 可选

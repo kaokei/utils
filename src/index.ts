@@ -1,4 +1,10 @@
 export interface Option {
+  key?: PropertyKey
+  value: string | number
+  label: string
+  [propName: string]: any // 允许任意自定义属性
+}
+export interface KeyOption {
   key: PropertyKey
   value: string | number
   label: string
@@ -13,19 +19,19 @@ type ToValues<T> = {
   [P in keyof T]: T[P] extends { value: infer K } ? K : never
 }
 
-type KeyValueMap<T extends readonly Option[]> = {
+type KeyValueMap<T extends readonly KeyOption[]> = {
   [P in T[number]['key']]: Extract<T[number], { key: P }>['value']
 }
 
-type CustomKeyMap<T extends readonly Option[], K extends keyof T[number]> = {
+type CustomKeyMap<T extends readonly KeyOption[], K extends keyof T[number]> = {
   [P in T[number]['key']]: Extract<T[number], { key: P }>[K]
 }
 
-type KeyLabelMap<T extends readonly Option[]> = {
+type KeyLabelMap<T extends readonly KeyOption[]> = {
   [P in T[number]['key']]: Extract<T[number], { key: P }>['label']
 }
 
-type ValueKeyMap<T extends readonly Option[]> = {
+type ValueKeyMap<T extends readonly KeyOption[]> = {
   [P in T[number]['value']]: Extract<T[number], { value: P }>['key']
 }
 
@@ -37,7 +43,7 @@ type ValueLabelMap<T extends readonly Option[]> = {
   [P in T[number]['value']]: Extract<T[number], { value: P }>['label']
 }
 
-type KeyMap<T extends readonly Option[]> = {
+type KeyMap<T extends readonly KeyOption[]> = {
   [P in T[number]['key']]: Extract<T[number], { key: P }>
 }
 
@@ -48,7 +54,7 @@ type ValueMap<T extends readonly Option[]> = {
 /**
  * 获取所有 key
  */
-export function getKeys<T extends readonly Option[]>(options: T) {
+export function getKeys<T extends readonly KeyOption[]>(options: T) {
   return options.map(option => option.key) as ToKeys<T>
 }
 
@@ -62,7 +68,7 @@ export function getValues<T extends readonly Option[]>(options: T) {
 /**
  * 获取key-value映射
  */
-export function getKeyValueMap<T extends readonly Option[]>(options: T) {
+export function getKeyValueMap<T extends readonly KeyOption[]>(options: T) {
   return options.reduce((map, option) => ({
     ...map,
     [option.key]: option.value,
@@ -72,7 +78,7 @@ export function getKeyValueMap<T extends readonly Option[]>(options: T) {
 /**
  * 获取key-label映射
  */
-export function getKeyLabelMap<T extends readonly Option[]>(options: T) {
+export function getKeyLabelMap<T extends readonly KeyOption[]>(options: T) {
   return options.reduce((map, option) => ({
     ...map,
     [option.key]: option.label,
@@ -82,7 +88,7 @@ export function getKeyLabelMap<T extends readonly Option[]>(options: T) {
 /**
  * 获取value-key映射
  */
-export function getValueKeyMap<T extends readonly Option[]>(options: T) {
+export function getValueKeyMap<T extends readonly KeyOption[]>(options: T) {
   return options.reduce((map, option) => ({
     ...map,
     [option.value]: option.key,
@@ -102,7 +108,7 @@ export function getValueLabelMap<T extends readonly Option[]>(options: T) {
 /**
  * 获取key-option映射
  */
-export function getKeyMap<T extends readonly Option[]>(options: T) {
+export function getKeyMap<T extends readonly KeyOption[]>(options: T) {
   return options.reduce((map, option) => ({
     ...map,
     [option.key]: option,
@@ -123,7 +129,7 @@ export function getValueMap<T extends readonly Option[]>(options: T) {
  * 自定义 key-指定属性映射
  */
 
-export function getMapByKey<T extends Option, K extends keyof T>(options: readonly T[], valueKey: K) {
+export function getMapByKey<T extends KeyOption, K extends keyof T>(options: readonly T[], valueKey: K) {
   return options.reduce((map, option) => ({
     ...map,
     [option.key]: option[valueKey],

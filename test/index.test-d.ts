@@ -1,13 +1,15 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, expectTypeOf, it } from 'vitest'
 
-import {
+import type {
   getKeyLabelMap,
   getKeyMap,
   getKeyValueMap,
   getKeys,
   getMapByKey,
-  getMapByValue,
   getValueKeyMap,
+} from '../src/index'
+import {
+  getMapByValue,
   getValueLabelMap,
   getValueMap,
   getValues,
@@ -15,26 +17,26 @@ import {
 
 export const EXAMPLE_OPTIONS = [
   {
-    key: 'BOY', // 唯一性
-    value: 1, // 唯一性
+    // key: 'BOY',
+    value: 1,
     label: '男生',
     tag: '高达',
     color: 'red',
   },
   {
-    key: 'GIRL', // 唯一性
-    value: 2, // 唯一性
+    // key: 'GIRL',
+    value: 2,
     label: '女生',
     tag: '小仙女',
     color: 'green',
   },
 ] as const
 
+type FirstParameter<T extends (...args: any) => any> = Parameters<T>[0]
+
 describe('typeScript type tests', () => {
   it('getKeys', () => {
-    const keys = getKeys(EXAMPLE_OPTIONS)
-
-    expect(keys).toEqual(['BOY', 'GIRL'])
+    expectTypeOf(EXAMPLE_OPTIONS).not.toMatchTypeOf<FirstParameter<typeof getKeys>>()
   })
 
   it('getValues', () => {
@@ -44,27 +46,15 @@ describe('typeScript type tests', () => {
   })
 
   it('getKeyValueMap', () => {
-    const keyValueMap = getKeyValueMap(EXAMPLE_OPTIONS)
-
-    expect(keyValueMap.BOY).toBe(1)
-    expect(keyValueMap.GIRL).toBe(2)
-    expect(keyValueMap).toEqual({ BOY: 1, GIRL: 2 })
+    expectTypeOf(EXAMPLE_OPTIONS).not.toMatchTypeOf<FirstParameter<typeof getKeyValueMap>>()
   })
 
   it('getKeyLabelMap', () => {
-    const keyLabelMap = getKeyLabelMap(EXAMPLE_OPTIONS)
-
-    expect(keyLabelMap.BOY).toBe('男生')
-    expect(keyLabelMap.GIRL).toBe('女生')
-    expect(keyLabelMap).toEqual({ BOY: '男生', GIRL: '女生' })
+    expectTypeOf(EXAMPLE_OPTIONS).not.toMatchTypeOf<FirstParameter<typeof getKeyLabelMap>>()
   })
 
   it('getValueKeyMap', () => {
-    const valueKeyMap = getValueKeyMap(EXAMPLE_OPTIONS)
-
-    expect(valueKeyMap[1]).toBe('BOY')
-    expect(valueKeyMap[2]).toBe('GIRL')
-    expect(valueKeyMap).toEqual({ 1: 'BOY', 2: 'GIRL' })
+    expectTypeOf(EXAMPLE_OPTIONS).not.toMatchTypeOf<FirstParameter<typeof getValueKeyMap>>()
   })
 
   it('getValueLabelMap', () => {
@@ -76,11 +66,7 @@ describe('typeScript type tests', () => {
   })
 
   it('getKeyMap', () => {
-    const keyMap = getKeyMap(EXAMPLE_OPTIONS)
-
-    expect(keyMap.BOY).toBe(EXAMPLE_OPTIONS[0])
-    expect(keyMap.GIRL).toBe(EXAMPLE_OPTIONS[1])
-    expect(keyMap).toEqual({ BOY: EXAMPLE_OPTIONS[0], GIRL: EXAMPLE_OPTIONS[1] })
+    expectTypeOf(EXAMPLE_OPTIONS).not.toMatchTypeOf<FirstParameter<typeof getKeyMap>>()
   })
 
   it('getValueMap', () => {
@@ -92,11 +78,7 @@ describe('typeScript type tests', () => {
   })
 
   it('getMapByKey', () => {
-    const keyTagMap = getMapByKey(EXAMPLE_OPTIONS, 'tag')
-
-    expect(keyTagMap.BOY).toBe('高达')
-    expect(keyTagMap.GIRL).toBe('小仙女')
-    expect(keyTagMap).toEqual({ BOY: '高达', GIRL: '小仙女' })
+    expectTypeOf(EXAMPLE_OPTIONS).not.toMatchTypeOf<FirstParameter<typeof getMapByKey>>()
   })
 
   it('getMapByValue', () => {
