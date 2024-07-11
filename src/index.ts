@@ -108,7 +108,7 @@ export function getValueLabelMap<T extends readonly Option[]>(options: T) {
 /**
  * 获取key-option映射
  */
-export function getKeyMap<T extends readonly KeyOption[]>(options: T) {
+export function getKeyOptionMap<T extends readonly KeyOption[]>(options: T) {
   return options.reduce((map, option) => ({
     ...map,
     [option.key]: option,
@@ -118,7 +118,7 @@ export function getKeyMap<T extends readonly KeyOption[]>(options: T) {
 /**
  * 获取value-option映射
  */
-export function getValueMap<T extends readonly Option[]>(options: T) {
+export function getValueOptionMap<T extends readonly Option[]>(options: T) {
   return options.reduce((map, option) => ({
     ...map,
     [option.value]: option,

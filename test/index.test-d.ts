@@ -2,7 +2,7 @@ import { describe, expect, expectTypeOf, it } from 'vitest'
 
 import type {
   getKeyLabelMap,
-  getKeyMap,
+  getKeyOptionMap,
   getKeyValueMap,
   getKeys,
   getMapByKey,
@@ -11,7 +11,7 @@ import type {
 import {
   getMapByValue,
   getValueLabelMap,
-  getValueMap,
+  getValueOptionMap,
   getValues,
 } from '../src/index'
 
@@ -65,12 +65,12 @@ describe('typeScript type tests', () => {
     expect(valueLabelMap).toEqual({ 1: '男生', 2: '女生' })
   })
 
-  it('getKeyMap', () => {
-    expectTypeOf(EXAMPLE_OPTIONS).not.toMatchTypeOf<FirstParameter<typeof getKeyMap>>()
+  it('getKeyOptionMap', () => {
+    expectTypeOf(EXAMPLE_OPTIONS).not.toMatchTypeOf<FirstParameter<typeof getKeyOptionMap>>()
   })
 
-  it('getValueMap', () => {
-    const valueMap = getValueMap(EXAMPLE_OPTIONS)
+  it('getValueOptionMap', () => {
+    const valueMap = getValueOptionMap(EXAMPLE_OPTIONS)
 
     expect(valueMap[1]).toBe(EXAMPLE_OPTIONS[0])
     expect(valueMap[2]).toBe(EXAMPLE_OPTIONS[1])

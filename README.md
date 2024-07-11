@@ -9,9 +9,10 @@
 ## Example
 
 以下是常量的标准定义形式，其中key，value，label是每个对象的必需属性，并且key和value的属性值必须唯一。
+
 而且除了key，value，label属性以外可以增加任意其他属性，但是要求每个对象的属性名需要一致。
 
-**注意** 特殊情况下，key属性可以不存在，此时和key相关的函数不能使用。主要是为了兼容有些场景不需要key属性
+**注意** 特殊情况下，key属性可以不存在，此时和key相关的函数不能使用。主要是为了兼容有些场景不需要key属性，比如后端接口返回的枚举值没有key属性。
 
 ```ts
 export const EXAMPLE_OPTIONS = [
@@ -77,7 +78,7 @@ valueLabelMap === { 1: '男生', 2: '女生' }
 ### 获取key-option的映射对象
 
 ```ts
-const keyMap = getKeyMap(EXAMPLE_OPTIONS)
+const keyMap = getKeyOptionMap(EXAMPLE_OPTIONS)
 keyMap === {
   BOY: {
     key: 'BOY',
@@ -99,7 +100,7 @@ keyMap === {
 ### 获取value-option的映射对象
 
 ```ts
-const valueMap = getValueMap(EXAMPLE_OPTIONS)
+const valueMap = getValueOptionMap(EXAMPLE_OPTIONS)
 valueMap === {
   1: {
     key: 'BOY',

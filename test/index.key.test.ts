@@ -2,14 +2,14 @@ import { describe, expect, it } from 'vitest'
 
 import {
   getKeyLabelMap,
-  getKeyMap,
+  getKeyOptionMap,
   getKeyValueMap,
   getKeys,
   getMapByKey,
   getMapByValue,
   getValueKeyMap,
   getValueLabelMap,
-  getValueMap,
+  getValueOptionMap,
   getValues,
 } from '../src/index'
 
@@ -75,16 +75,16 @@ describe('typeScript type tests', () => {
     expect(valueLabelMap).toEqual({ 1: '男生', 2: '女生' })
   })
 
-  it('getKeyMap', () => {
-    const keyMap = getKeyMap(EXAMPLE_OPTIONS)
+  it('getKeyOptionMap', () => {
+    const keyMap = getKeyOptionMap(EXAMPLE_OPTIONS)
 
     expect(keyMap.BOY).toBe(EXAMPLE_OPTIONS[0])
     expect(keyMap.GIRL).toBe(EXAMPLE_OPTIONS[1])
     expect(keyMap).toEqual({ BOY: EXAMPLE_OPTIONS[0], GIRL: EXAMPLE_OPTIONS[1] })
   })
 
-  it('getValueMap', () => {
-    const valueMap = getValueMap(EXAMPLE_OPTIONS)
+  it('getValueOptionMap', () => {
+    const valueMap = getValueOptionMap(EXAMPLE_OPTIONS)
 
     expect(valueMap[1]).toBe(EXAMPLE_OPTIONS[0])
     expect(valueMap[2]).toBe(EXAMPLE_OPTIONS[1])
